@@ -1,0 +1,45 @@
+package kr.ac.kopo.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.ac.kopo.account.service.AccountService;
+
+public class TransferProcessController implements Controller {
+	
+	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		request.setCharacterEncoding("utf-8");
+		
+		String senderAccountNumber = request.getParameter("senderAccountNumber");
+		String receiverAccountNumber = request.getParameter("receiverAccountNumber");
+		
+		String receiverBankCode = request.getParameter("receiverBankCode");
+		String senderBankCode = request.getParameter("senderBankCode");
+		
+		int transferAmount = Integer.parseInt(request.getParameter("transferAmount"));
+
+		String senderAccountPassword = request.getParameter("senderAccountPassword");
+		
+		System.out.println(senderAccountNumber + receiverAccountNumber + senderBankCode +receiverBankCode + transferAmount + senderAccountPassword );
+		
+		AccountService service = new AccountService();
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+
+}

@@ -1,0 +1,46 @@
+package kr.ac.kopo.board.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import kr.ac.kopo.login.LoginVO;
+import kr.ac.kopo.util.ConnectionFactory;
+
+public class LoginDAO {
+	
+	public LoginVO login(LoginVO loginVO) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("select * ");
+		sql.append(" from BK_Bank_customer  ");
+		sql.append("  where CUS_ID=? and CUS_PW=? ");
+
+		try (
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+				
+				){
+			
+			pstmt.setString(1, loginVO.getCusId());
+			pstmt.setString(2, loginVO.getCusPw());
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			System.out.println(rs);
+			
+			if(rs.next()) {
+				
+				LoginVO userVO = new LoginVO();
+				userVO.setCusId(rs.getString("CUS_ID"));
+				userVO.setCusPw(rs.getString("CUS_PW"));			
+				
+				System.out.println(userVO);
+				return userVO;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+}

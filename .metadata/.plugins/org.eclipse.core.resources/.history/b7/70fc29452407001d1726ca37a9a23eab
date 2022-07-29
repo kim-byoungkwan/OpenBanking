@@ -1,0 +1,123 @@
+package kr.ac.kopo.account.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import kr.ac.kopo.account.vo.AccountVO;
+import kr.ac.kopo.util.ConnectionFactory;
+
+public class AccountDAO {
+	
+	public String makeAccountNumber(String userId) {
+		
+		int accountNum1 = 100;
+		StringBuilder accountNum2 = new StringBuilder();
+		int accountNum3;
+
+		char[] id = userId.toCharArray();
+		for(int i = 0; i < 1; i++) {
+			int num = (int)id[i];
+			accountNum2.append(num);
+		}
+		
+		accountNum2.toString();
+		
+		Random random = new Random();
+		
+		while(true) {
+	       accountNum3 = (int)random.nextInt(100000);
+	       if(accountNum3>10000) {
+	          break;
+	       }
+	    }
+		
+		StringBuilder stb = new StringBuilder();
+		
+		stb.append(accountNum1);
+		stb.append("-");
+		stb.append(accountNum2);
+		stb.append("-");
+		stb.append(accountNum3);
+				
+		return stb.toString(); 
+		}
+	
+	public void insertAccount(AccountVO account) {
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO BK_Bank_account(cus_id, cus_phonenumber, account_number, account_password, account_opening_date, bank_code, account_balance, account_alias)VALUES(?,?,?,?,sysdate,'100',?,?)");
+		
+		try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+				) {
+			
+			pstmt.setString(1, account.getCusId());
+			pstmt.setString(2, account.getCusPhonenumber());
+			pstmt.setString(3, account.getAccountNumber());
+			pstmt.setString(4, account.getAccountPassword());
+			pstmt.setString(5, account.getAccountBalance());
+			pstmt.setString(6, account.getAccountAlias());
+			
+			pstmt.executeUpdate();
+		
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
+	public List<AccountVO> selectById(String id){
+		
+		List<AccountVO> accountList = new ArrayList<>();
+		
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append("SELECT cus_id, cus_phonenumber, account_number, account_password, account_opening_date, bank_code, account_balance, account_alias FROM BK_Bank_account WHERE cus_id = ?");
+		
+		try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+				
+				) {
+			
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				
+				String cusId = rs.getString("cus_id");
+				String cusPhonenumber = rs.getString("cus_phonenumber");
+				String accountNumber = rs.getString("account_number");
+				String accountPassword = rs.getString("account_password");
+				String openingDate = rs.getString("account_opening_date");
+				String bankCode = rs.getString("bank_code");
+				String accountBalance= rs.getString("account_balance");
+				String accountAlias = rs.getString("account_alias");
+				
+				AccountVO account = new AccountVO();
+				account.setCusId(cusId);
+				account.setCusPhonenumber(cusPhonenumber);
+				account.setAccountNumber(accountNumber);
+				account.setAccountPassword(accountPassword);
+				account.setOpeningDate(openingDate);
+				account.setAccountBalance(accountBalance);
+				account.setAccountAlias(accountAlias);
+				
+				accountList.add(account);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+			return accountList;
+			
+		}
+		
+}
+
+
+

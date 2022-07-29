@@ -1,0 +1,3 @@
+/login.do=kr.ac.kopo.controller.LoginController
+/loginProcess.do=kr.ac.kopo.controller.LoginProcessController
+

@@ -1,0 +1,82 @@
+package kr.ac.kopo.account.vo;
+
+public class AccountVO {
+	
+	private String cusId;
+	private String cusPhonenumber;
+	private String accountNumber;
+	private String accountPassword;
+	private String openingDate;
+	private String bankCode;
+	private String accountBalance;
+	private String accountAlias;
+	
+	public AccountVO() {
+			
+	}
+
+	public String getCusId() {
+		return cusId;
+	}
+
+	public void setCusId(String cusId) {
+		this.cusId = cusId;
+	}
+
+	public String getCusPhonenumber() {
+		return cusPhonenumber;
+	}
+
+	public void setCusPhonenumber(String cusPhonenumber) {
+		this.cusPhonenumber = cusPhonenumber;
+	}
+
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	public String getAccountPassword() {
+		return accountPassword;
+	}
+
+	public void setAccountPassword(String accountPassword) {
+		this.accountPassword = accountPassword;
+	}
+
+	public String getOpeningDate() {
+		return openingDate;
+	}
+
+	public void setOpeningDate(String openingDate) {
+		this.openingDate = openingDate;
+	}
+
+	public String getBankCode() {
+		return bankCode;
+	}
+
+	public void setBankCode(String bankCode) {
+		this.bankCode = bankCode;
+	}
+
+	public String getAccountBalance() {
+		return accountBalance;
+	}
+
+	public void setAccountBalance(String accountBalance) {
+		this.accountBalance = accountBalance;
+	}
+
+	public String getAccountAlias() {
+		return accountAlias;
+	}
+
+	public void setAccountAlias(String accountAlias) {
+		this.accountAlias = accountAlias;
+	}
+	
+}

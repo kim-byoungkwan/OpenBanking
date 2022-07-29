@@ -1,0 +1,42 @@
+package kr.ac.kopo.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.ac.kopo.account.service.AccountService;
+import kr.ac.kopo.account.vo.AccountVO;
+
+public class AccountWriteProcessController implements Controller {
+	
+	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		request.setCharacterEncoding("utf-8");
+		
+		String userId = request.getParameter("userId");
+		String cusPhonenumber = request.getParameter("phoneNumber");
+		String accountPassword = request.getParameter("accountPassword");
+		String accountBalance = request.getParameter("accountBalance");
+		String accountAlias = request.getParameter("accountAlias");
+
+		
+		AccountVO account = new AccountVO();
+		account.setCusId(userId);
+		account.setCusPhonenumber(cusPhonenumber);
+		account.setAccountPassword(accountPassword);
+		account.setAccountBalance(accountBalance);
+		account.setAccountAlias(accountAlias);
+		
+		System.out.println(account);
+		
+		AccountService service = new AccountService();
+		service.addAccount(account, userId);
+		
+		return "redirect:/account/list.do";
+					
+	}
+	
+	
+	
+	
+
+}

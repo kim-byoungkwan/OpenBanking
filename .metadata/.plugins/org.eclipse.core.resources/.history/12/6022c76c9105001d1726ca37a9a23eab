@@ -1,0 +1,69 @@
+package kr.ac.kopo.board.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import kr.ac.kopo.login.LoginVO;
+import kr.ac.kopo.util.ConnectionFactory;
+
+public class LoginDAO {
+	
+	public LoginVO login(LoginVO loginVO) {
+		StringBuilder sql = new StringBuilder();
+	
+		sql.append("SELECT CUS_ID, CUS_PW FROM BK_Bank_customer where cus_id=? and cus_pw=? ");
+
+		try (
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+				
+				){
+				
+			pstmt.setString(1, loginVO.getCusId());
+			pstmt.setString(2, loginVO.getCusPw());
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				System.out.println(2222);
+				LoginVO userVO = new LoginVO();
+				userVO.setCusId(rs.getString("CUS_ID"));
+				userVO.setCusPw(rs.getString("CUS_PW"));			
+				
+				System.out.println(userVO);
+				return userVO;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public void insertUser(LoginVO loginVO) {
+		
+		StringBuilder sql= new StringBuilder();
+		sql.append("INSERT INTO BK_Bank_customer (cus_number,cus_name, cus_ID, cus_PW, cus_phone_num, cus_email_address,cus_occupation,join_path,account_number");
+		sql.append("values(seqCus.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, null)");
+		
+				try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+				) {
+			
+					pstmt.setString(1,loginVO.getCusName());
+					pstmt.setString(2,loginVO.getCusId());
+					pstmt.setString(3,loginVO.getCusPw());
+					pstmt.setString(4,loginVO.getCusPhoneNum());
+					pstmt.setString(5,loginVO.getCusEmailAddress());
+					pstmt.setString(6,loginVO.getCusOccupation());
+					pstmt.setString(7,loginVO.getJoinPath());
+			
+			pstmt.executeUpdate();
+		
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+	}
+}

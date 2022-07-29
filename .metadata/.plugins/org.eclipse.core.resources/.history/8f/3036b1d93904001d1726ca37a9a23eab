@@ -1,0 +1,34 @@
+package kr.ac.kopo.controller;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+
+public class HandlerMapping {
+	
+	private Map<String, Controller> mappings = new HashMap<>();
+	
+	public HandlerMapping(String propLocation) {
+		
+		Properties prop = new Properties();
+		
+		try {
+			
+			InputStream is = new FileInputStream(propLocation);
+			prop.load(is);
+			
+			
+		}
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+
+}

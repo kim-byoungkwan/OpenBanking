@@ -1,0 +1,44 @@
+package kr.ac.kopo.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import kr.ac.kopo.account.service.AccountService;
+import kr.ac.kopo.login.LoginVO;
+import kr.ac.kopo.transaction.service.TransactionService;
+
+public class TransferProcessController implements Controller {
+	
+	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		request.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
+		
+		LoginVO user = (LoginVO)session.getAttribute("userVO");
+		
+		String userId = user.getCusId();
+		String cusPhonenumber = user.getCusPhoneNum();
+		
+		String senderAccountNumber = request.getParameter("senderAccountNumber");
+		String receiverAccountNumber = request.getParameter("receiverAccountNumber");
+
+		String senderBankCode = request.getParameter("senderBankCode");
+		String receiverBankCode = request.getParameter("receiverBankCode");
+		
+		int transferAmount = Integer.parseInt(request.getParameter("transferAmount"));
+
+		AccountService service = new AccountService();
+		TransactionService tranService = new TransactionService();
+		
+			service.transferProcess(senderAccountNumber, receiverAccountNumber, transferAmount, senderBankCode, receiverBankCode);
+			
+			tranService.insertTransaction(userId, cusPhonenumber, senderAccountNumber, receiverAccountNumber, senderBankCode, receiverBankCode, transferAmount);
+			
+			return "redirect:/account/list.do";
+			
+		}
+		
+}
+

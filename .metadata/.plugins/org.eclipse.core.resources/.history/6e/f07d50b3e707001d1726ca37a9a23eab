@@ -1,0 +1,26 @@
+package kr.ac.kopo.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class TransferProcessController implements Controller {
+	
+	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		request.setCharacterEncoding("utf-8");
+		
+		String senderAccountNumber = request.getParameter("senderAccountNumber");
+		String receiverAccountNumber = request.getParameter("receiverAccountNumber");
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+
+}

@@ -1,0 +1,5 @@
+package kr.ac.kopo.login.copy;
+
+public class LoginVO {
+
+}

@@ -1,0 +1,70 @@
+package kr.ac.kopo.login;
+
+public class LoginVO {
+	private int cusNumber;
+	private String cusName;
+	private int cusPhoneNum;
+	private String cusOccupation;
+	private String cusId;
+	private String cusPw;
+	private int accountNumber;
+	private String joinPath;
+	
+	public LoginVO() {
+		super();
+	}
+	
+	public String toString() {
+		return "LoginVO [cusNumber=" + cusNumber + ", cusName=" + cusName + ", cusPhoneNum=" + cusPhoneNum
+				+ ", cusOccupation=" + cusOccupation + ", cusId=" + cusId + ", cusPw=" + cusPw + ", accountNumber="
+				+ accountNumber + ", joinPath=" + joinPath + "]";
+	}
+	public int getCusNumber() {
+		return cusNumber;
+	}
+	public void setCusNumber(int cusNumber) {
+		this.cusNumber = cusNumber;
+	}
+	public String getCusName() {
+		return cusName;
+	}
+	public void setCusName(String cusName) {
+		this.cusName = cusName;
+	}
+	public int getCusPhoneNum() {
+		return cusPhoneNum;
+	}
+	public void setCusPhoneNum(int cusPhoneNum) {
+		this.cusPhoneNum = cusPhoneNum;
+	}
+	public String getCusOccupation() {
+		return cusOccupation;
+	}
+	public void setCusOccupation(String cusOccupation) {
+		this.cusOccupation = cusOccupation;
+	}
+	public String getCusId() {
+		return cusId;
+	}
+	public void setCusId(String cusId) {
+		this.cusId = cusId;
+	}
+	public String getCusPw() {
+		return cusPw;
+	}
+	public void setCusPw(String cusPw) {
+		this.cusPw = cusPw;
+	}
+	public int getAccountNumber() {
+		return accountNumber;
+	}
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+	public String getJoinPath() {
+		return joinPath;
+	}
+	public void setJoinPath(String joinPath) {
+		this.joinPath = joinPath;
+	}
+}

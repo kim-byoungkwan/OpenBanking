@@ -1,0 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:choose>
+	<c:when test="${not empty userVO }">
+	
+	</c:when>
+	
+	<c:otherwise>
+	<a class="btn btn-primary btn-xl" href="${ pageContext.request.contextPath }/login.do"  >LogIn</a>
+    <a class="btn btn-primary btn-xl" href="${ pageContext.request.contextPath }/join/joinForm.do">SignUp</a>
+	</c:otherwise>
+
+
+
+</c:choose>

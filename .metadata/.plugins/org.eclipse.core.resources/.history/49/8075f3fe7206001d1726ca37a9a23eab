@@ -1,0 +1,114 @@
+package kr.ac.kopo.account.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.Random;
+
+import kr.ac.kopo.account.vo.AccountVO;
+import kr.ac.kopo.util.ConnectionFactory;
+
+public class AccountDAO {
+	
+	public StringBuilder makeAccountNumber(String userId) {
+		
+		int accountNum1 = 100;
+		StringBuilder accountNum2 = new StringBuilder();
+		int accountNum3;
+
+		char[] id = userId.toCharArray();
+		for(int i = 0; i < id.length; i++) {
+			int num = (int)id[i];
+			accountNum2.append(num);
+		}
+		
+		Random random = new Random();
+		
+		while(true) {
+	       accountNum3 = (int)random.nextInt(100000);
+	       if(accountNum3>10000) {
+	          break;
+	       }
+	    }
+		
+		StringBuilder stb = new StringBuilder();
+		
+		stb.append(accountNum1);
+		stb.append("-");
+		stb.append(accountNum2);
+		stb.append("-");
+		stb.append(accountNum3);
+		
+		System.out.println(stb);
+				
+		return stb;
+		
+		}
+	
+	
+	
+	public void insertAccount(AccountVO account) {
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO BK_Bank_account(cus_id, account_number, account_password, account_opening_date, bank_code, account_balance, account_alias)VALUES(?,'12345-12-12345',?,sysdate,'100',?,?)");
+		
+		try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+				) {
+			
+			pstmt.setString(1, account.getCusId());
+			pstmt.setString(2, account.getAccountPassword());
+			pstmt.setString(3, account.getAccountBalance());
+			pstmt.setString(4, account.getAccountAlias());
+			
+			pstmt.executeUpdate();
+		
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+		
+	}
+	
+
+//    Random random = new Random();
+//    int accountNumber1;
+//    int accountNumber2;
+//    int accountNumber3;
+//    
+//    
+//    while(true) {
+//       accountNumber1=(int)random.nextInt(100000);
+//       if(accountNumber1>10000) {
+//          break;
+//       }
+//    }
+//    while(true) {   
+//       accountNumber2=(int)random.nextInt(100);
+//       if(accountNumber2>10) {
+//          break;
+//       }
+//    }
+//    while(true) {   
+//       accountNumber3=(int)random.nextInt(100000);
+//       if(accountNumber3>10000) {
+//          break;
+//       }
+//    }
+//
+//    
+//    StringBuilder stb = new StringBuilder();
+//    stb.append(accountNumber1);
+//    stb.append("-");
+//    stb.append(accountNumber2);
+//    stb.append("-");
+//    stb.append(accountNumber3);
+	
+	
+	
+	
+	
+
+}

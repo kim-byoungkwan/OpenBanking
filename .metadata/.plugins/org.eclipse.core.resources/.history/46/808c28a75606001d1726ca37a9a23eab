@@ -1,0 +1,5 @@
+package kr.ac.kopo.account.service;
+
+public class AccountService {
+
+}

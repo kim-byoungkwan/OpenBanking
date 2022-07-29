@@ -1,0 +1,24 @@
+package kr.ac.kopo.account.service;
+
+import kr.ac.kopo.account.dao.AccountDAO;
+import kr.ac.kopo.account.vo.AccountVO;
+
+public class AccountService {
+	
+	private AccountDAO accountDao;
+	
+	public AccountService() {
+		accountDao = new AccountDAO();
+	}
+	
+	public void addAccount(AccountVO account, String userId) {
+		
+		= accountDao.makeAccountNumber(userId)
+		
+		
+		
+	}
+	
+	
+
+}
