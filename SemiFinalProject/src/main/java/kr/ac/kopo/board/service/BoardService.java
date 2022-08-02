@@ -1,0 +1,37 @@
+package kr.ac.kopo.board.service;
+
+import java.util.List;
+
+import kr.ac.kopo.board.dao.BoardDAO;
+import kr.ac.kopo.board.vo.BoardVO;
+
+public class BoardService {
+	
+	private BoardDAO boardDao;
+	
+	public BoardService() {	
+		boardDao = new BoardDAO();
+	}
+	
+	public void addBoard(BoardVO board) {
+		int no = boardDao.selectBoardNo();
+		board.setNo(no);
+		boardDao.insertBoard(board);	
+	}
+	
+	public List<BoardVO> selectAllBoard(){
+		List<BoardVO> boardList = boardDao.selectAll();
+		return boardList;
+	}
+	
+	public BoardVO detailBoard(int no) {
+		BoardVO board = boardDao.selectByNo(no);
+		return board;
+	}
+	
+	
+	
+	
+	
+
+}

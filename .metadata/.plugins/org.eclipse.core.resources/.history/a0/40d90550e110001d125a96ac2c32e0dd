@@ -1,0 +1,113 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+</head>
+
+<body>'
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="row p-5">
+                        <div class="col-md-6">
+                            <img src="http://via.placeholder.com/400x90?text=logo">
+                        </div>
+
+                    </div>
+
+                    <hr class="my-5">
+
+                    <div class="row p-5">
+                        <div class="col-md-12">
+                            
+                            <table class="table">
+                            
+                                <thead>
+                                    <tr>
+                                        <th class="border-0 text-uppercase small font-weight-bold">No</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Writer</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">UserId</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Title</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Content</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">WriteDate</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">BoardType</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>김병관</td>
+                                        <td>bg0307</td>
+                                        <td>계좌개설과정에서 문제가 발생했습니다</td>
+                                        <td>어제 BK 뱅크에서 계좌를 개설하고</td>
+                                        <td>220731</td>
+                                        <td>U</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>김병관</td>
+                                        <td>bg0307</td>
+                                        <td>계좌개설과정에서 문제가 발생했습니다</td>
+                                        <td>어제 BK 뱅크에서 계좌를 개설하고</td>
+                                        <td>220731</td>
+                                        <td>U</td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>김병관</td>
+                                        <td>bg0307</td>
+                                        <td>계좌개설과정에서 문제가 발생했습니다</td>
+                                        <td>어제 BK 뱅크에서 계좌를 개설하고</td>
+                                        <td>220731</td>
+                                        <td>U</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row-reverse bg-dark text-white p-4">
+                        <div class="py-3 px-5 text-right">
+                            <div class="mb-2">Grand Total</div>
+                            <div class="h2 font-weight-light">$234,234</div>
+                        </div>
+
+                        <div class="py-3 px-5 text-right">
+                            <div class="mb-2">Discount</div>
+                            <div class="h2 font-weight-light">10%</div>
+                        </div>
+
+                        <div class="py-3 px-5 text-right">
+                            <div class="mb-2">Sub - Total amount</div>
+                            <div class="h2 font-weight-light">$32,432</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-light mt-5 mb-5 text-center small">by : <a class="text-light" target="_blank" href="http://totoprayogo.com">totoprayogo.com</a></div>
+
+</div>
+
+
+</body>
+</html>
+
+
+
+
+

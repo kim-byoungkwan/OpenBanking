@@ -1,0 +1,100 @@
+package kr.ac.kopo.board.reply.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import kr.ac.kopo.board.reply.vo.BoardReplyVO;
+import kr.ac.kopo.util.ConnectionFactory;
+
+public class BoardReplyDAO {
+	
+	public int selectBoardReplyNo() {
+		
+		String sql = "select seqReBoard.nextval from dual";
+		
+		try(
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				
+				) {
+				
+				ResultSet rs = pstmt.executeQuery();
+				rs.next();
+				
+				return rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public void insertBoardReply(BoardReplyVO boardReply) {
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("insert into reply_board (boardNo, reNo, reWriter, reContent) values(?,?,?,?)");
+		
+		try {
+			
+			Connection conn = new ConnectionFactory().getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+			
+			int loc = 1;
+			pstmt.setInt(loc++, boardReply.getBoardNo());
+			pstmt.setInt(loc++, boardReply.getReNo());
+			pstmt.setString(loc++, boardReply.getReWriter());
+			pstmt.setString(loc++, boardReply.getReContent());
+			
+			pstmt.executeQuery();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public List<BoardReplyVO> selectByBoardNo(int BoardNo) {
+		
+		List<BoardReplyVO> boardReplyList = new ArrayList<>();
+		StringBuilder sql = new StringBuilder();
+		sql.append("select reno, rewriter, recontent, rewritedate from reply_board where boardno = ? order by reno");
+		
+		try(
+				
+				Connection conn = new ConnectionFactory().getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString())
+				
+				) {
+			
+				pstmt.setInt(1, BoardNo);
+				ResultSet rs = pstmt.executeQuery();
+				while(rs.next()) {
+					int reNo = rs.getInt("reno");
+					String reWriter = rs.getString("rewriter");
+					String reContent = rs.getString("recontent");
+					String reWriteDate = rs.getString("rewritedate");
+					
+					BoardReplyVO boardReply = new BoardReplyVO();
+					
+					boardReply.setReNo(reNo);
+					boardReply.setReWriter(reWriter);
+					boardReply.setReContent(reContent);
+					boardReply.setReWriteDate(reWriteDate);
+					
+					boardReplyList.add(boardReply);
+					
+				}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return boardReplyList;
+	}
+	
+	
+	
+	
+	
+
+}

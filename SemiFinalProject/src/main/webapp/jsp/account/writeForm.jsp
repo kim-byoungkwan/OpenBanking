@@ -56,7 +56,7 @@
                     <div class="col-lg-6">
 
                         <form action="${ pageContext.request.contextPath }/account/writeProcess.do" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <!-- Name input-->
+
                             <div class="form-floating mb-3">
                                 <input class="form-control" name="id" type="text" placeholder="Enter your name..." data-sb-validations="required" />
                                 <label for="id">ID</label>

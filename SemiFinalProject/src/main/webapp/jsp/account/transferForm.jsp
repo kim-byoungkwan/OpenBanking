@@ -44,7 +44,6 @@
     </div>
 </nav>
 
-
         <section class="page-section" id="contact">
             
             <div class="container px-4 px-lg-5">
@@ -71,8 +70,6 @@
                                 <input class="form-control"  name="userId" type="text" placeholder="Sender Account Number"  value=${userVO.cusId}  data-sb-validations="required" />
                                 <label for="senderAccountPassword">User ID :</label>
                           </div>
-                          
-                          
                           
                         <div class="form-floating mb-3">
                                 <input class="form-control"  name="senderAccountNumber" type="text" placeholder="Sender Account Number"  value=${senderAccountNumber} data-sb-validations="required" />
@@ -102,7 +99,6 @@
                                     </div>
                                 </div> 
             
-                          
                             <div class="form-floating mb-3">
                                 <input class="form-control"  name="receiverAccountNumber" type="text" placeholder="Enter your name..." data-sb-validations="required" />
                                 <label for="receiverAccountNumber">Recipient Account Number :</label>

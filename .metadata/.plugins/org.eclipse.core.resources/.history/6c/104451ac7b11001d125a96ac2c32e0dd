@@ -1,0 +1,21 @@
+package kr.ac.kopo.board.service;
+
+import kr.ac.kopo.board.dao.BoardDAO;
+import kr.ac.kopo.board.vo.BoardVO;
+
+public class BoardService {
+	
+	private BoardDAO boardDao;
+	
+	public BoardService() {	
+		boardDao = new BoardDAO();
+	}
+	
+	public void addBoard(BoardVO board) {
+		
+		
+		
+	}
+	
+
+}

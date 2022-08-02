@@ -332,8 +332,6 @@ public List<AccountVO> selectByYoonBank(String phonenumber){
 		
 		if(senderBankCode.equals("2") && receiverBankCode.equals("2")) {
 			
-			System.out.println("test junyeoung");
-			
 			sql1.append("update account set balance = balance-? where account_number=?");
 			sql2.append("update account set balance = balance+? where account_number=?");
 		

@@ -1,0 +1,38 @@
+package kr.ac.kopo.board.reply.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import kr.ac.kopo.board.reply.dao.BoardReplyDAO;
+import kr.ac.kopo.board.reply.vo.BoardReplyVO;
+
+public class BoardReplyService {
+	
+	private BoardReplyDAO boardReplyDao;
+	
+	public BoardReplyService() {
+		boardReplyDao = new BoardReplyDAO();
+	}
+	
+	public void addBoardReply(BoardReplyVO boardReply) {
+		
+		int reNo = boardReplyDao.selectBoardReplyNo();
+		boardReply.setReNo(reNo);
+		boardReplyDao.insertBoardReply(boardReply);
+		
+	}
+	
+	public List<BoardReplyVO> showBoardReply(int boardNo){
+		
+		List<BoardReplyVO> BoardReplyList = new ArrayList<>();
+		BoardReplyList = boardReplyDao.selectByBoardNo(boardNo);
+		return BoardReplyList;
+		
+	}
+	
+	
+	
+	
+	
+
+}

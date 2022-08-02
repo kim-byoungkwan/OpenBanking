@@ -1,0 +1,15 @@
+package kr.ac.kopo.board.dao;
+
+import kr.ac.kopo.board.vo.BoardVO;
+
+public class BoardDAO {
+	
+	public void insertBoard(BoardVO board) {
+		
+		
+		
+	}
+	
+	
+
+}

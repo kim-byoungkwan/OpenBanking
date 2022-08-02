@@ -29,29 +29,13 @@ public class TransferProcessController implements Controller {
 		String receiverBankCode = request.getParameter("receiverBankCode");
 		
 		int transferAmount = Integer.parseInt(request.getParameter("transferAmount"));
-		
-		
-		
+
 		AccountService service = new AccountService();
 		TransactionService tranService = new TransactionService();
 		
 			service.transferProcess(senderAccountNumber, receiverAccountNumber, transferAmount, senderBankCode, receiverBankCode);
 			
-			System.out.println("userid :" + userId);
-			System.out.println("cusPhonenumber :" + cusPhonenumber);
-			System.out.println("userName :" + userName);
-			System.out.println("senderAccountNumber :" + senderAccountNumber);
-			System.out.println("receiverAccountNumber :" +receiverAccountNumber);
-			System.out.println("senderBankCode:"+senderBankCode);
-			System.out.println("receiverBankCode:" + receiverBankCode);
-			System.out.println("transferAmount:"+transferAmount);
-			
-			// 여기까진 잘된다.
-			// 즉, 아래의 insertTransaction의 프로시져의 문제이다.
-			
-			
 			tranService.insertTransaction(userId, cusPhonenumber, senderAccountNumber, receiverAccountNumber, senderBankCode, receiverBankCode, transferAmount);
-			
 			
 			return "redirect:/account/list.do";
 			

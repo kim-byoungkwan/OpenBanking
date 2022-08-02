@@ -1,0 +1,14 @@
+/login.do=kr.ac.kopo.controller.LoginController
+/loginProcess.do=kr.ac.kopo.controller.LoginProcessController
+/logoutProcess.do=kr.ac.kopo.controller.LogoutProcessController
+/join/joinForm.do=kr.ac.kopo.controller.JoinFormController
+/join/joinProcess.do=kr.ac.kopo.controller.JoinProcessController
+/account/writeForm.do=kr.ac.kopo.controller.AccountWriteFormController
+/account/writeProcess.do=kr.ac.kopo.controller.AccountWriteProcessController
+/account/list.do=kr.ac.kopo.controller.AccountListController
+/account/transferForm.do=kr.ac.kopo.controller.TransferFormController
+/account/transferProcess.do=kr.ac.kopo.controller.TransferProcessController
+/account/transactionList.do=kr.ac.kopo.controller.TransactionListController
+/board/list.do=kr.ac.kopo.controller.BoardListController
+/board/writeForm.do=kr.ac.kopo.controller.BoardWriteFormController
+/board/writeProcess.do=kr.ac.kopo.controller.BoardWriteProcessController

@@ -17,7 +17,7 @@ public class TransactionDAO {
 		List<TransactionVO> transactionList = new ArrayList<>();
 		
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT TRAN_NUM, WITHRAWAL_ACCOUNT_NUM, DEPOSIT_ACCOUNT_NUM, WITHRAWAL_NAME, DEPOSIT_NAME, WITHRAWAL_BANK_CODE, DEPOSIT_BANK_CODE, WITHRAWAL_PHONE_NUMBER, DEPOSIT_PHONE_NUMBER, TRAN_AMOUNT, TRAN_DATE FROM TRANSACTION_HISTORY WHERE WITHRAWAL_PHONE_NUMBER = ?");
+		sql.append("SELECT TRAN_NUM, WITHRAWAL_ACCOUNT_NUM, DEPOSIT_ACCOUNT_NUM, WITHRAWAL_NAME, DEPOSIT_NAME, WITHRAWAL_BANK_CODE, DEPOSIT_BANK_CODE, WITHRAWAL_PHONE_NUMBER, DEPOSIT_PHONE_NUMBER, TRAN_AMOUNT, TRAN_DATE FROM TRANSACTION_HISTORY WHERE WITHRAWAL_PHONE_NUMBER = ? ORDER BY TRAN_NUM ASC");
 		
 		try(
 				
@@ -29,11 +29,7 @@ public class TransactionDAO {
 			pstmt.setString(1, phonenumber);
 			ResultSet rs = pstmt.executeQuery();
 			
-			System.out.println("test: rs");
-			
 			while(rs.next()) {
-				
-				System.out.println("test: rs22");
 				
 				int tranNum = rs.getInt("TRAN_NUM"); 
 				String withrawalAccountNum = rs.getString("WITHRAWAL_ACCOUNT_NUM");
@@ -47,7 +43,6 @@ public class TransactionDAO {
 				int tranAmount = rs.getInt("TRAN_AMOUNT");
 				String tranDate = rs.getString("TRAN_DATE");
 
-				
 				TransactionVO transaction = new TransactionVO();
 				
 				transaction.setTranNum(tranNum);
@@ -62,8 +57,6 @@ public class TransactionDAO {
 				transaction.setWithrawalPhoneNum(withrawalPhoneNum);
 				transaction.setDepositPhoneNum(depositPhoneNum);
 				
-				System.out.println(transaction.toString());
-				
 				transactionList.add(transaction);
 				} 
 			} catch (Exception e) {
@@ -75,16 +68,15 @@ public class TransactionDAO {
 
 
 	public void insertTransaction(String userId, String cusPhonenumber, String senderAccountNumber, String receiverAccountNumber, String senderBankCode, String receiverBankCode, int transferAmount) {
-		
-		try(
-				Connection conn = new ConnectionFactory().getConnection();
-				CallableStatement cstmt = conn.prepareCall("{call transaction_history_2(?,?,?,?,?,?,?)}");
-				
-				){
-				
-				System.out.println("testbk");
-				// OK but transaction_history_2 프로시져가 제대로 동작하지 않는다.
+
+		// JIHOON
+		if (senderBankCode.equals('9')) {
 			
+			try (
+					Connection conn = new ConnectionFactory().getConnection();
+					CallableStatement cstmt = conn.prepareCall("{call transaction_history_park(?,?,?,?,?,?,?)}");
+					) {
+				
 				cstmt.setString(1, userId);
 				cstmt.setString(2, cusPhonenumber);
 				cstmt.setString(3, senderAccountNumber);
@@ -94,11 +86,75 @@ public class TransactionDAO {
 				cstmt.setInt(7, transferAmount);
 				
 				cstmt.executeUpdate();
-					
-		} catch  (Exception e) {
-			e.printStackTrace();
+				
+			} catch  (Exception e) {
+				e.printStackTrace();
+			}
+	
+		} else if (senderBankCode.equals("14")) {
+		// YOON			
+			
+						try (
+								Connection conn = new ConnectionFactory().getConnection();
+								CallableStatement cstmt = conn.prepareCall("{call transaction_history_yoon_2(?,?,?,?,?,?,?)}");
+								) {
+							
+							cstmt.setString(1, userId);
+							cstmt.setString(2, cusPhonenumber);
+							cstmt.setString(3, senderAccountNumber);
+							cstmt.setString(4, receiverAccountNumber);
+							cstmt.setString(5, senderBankCode);
+							cstmt.setString(6, receiverBankCode);
+							cstmt.setInt(7, transferAmount);
+							
+							cstmt.executeUpdate();
+							
+						} catch  (Exception e) {
+							e.printStackTrace();
+						}
+			
+			
+		} else if (senderBankCode.equals("20")) {
+			// JO
+						try (
+								Connection conn = new ConnectionFactory().getConnection();
+								CallableStatement cstmt = conn.prepareCall("{call transaction_history_JO_3(?,?,?,?,?,?,?)}");
+								) {
+							
+							cstmt.setString(1, userId);
+							cstmt.setString(2, cusPhonenumber);
+							cstmt.setString(3, senderAccountNumber);
+							cstmt.setString(4, receiverAccountNumber);
+							cstmt.setString(5, senderBankCode);
+							cstmt.setString(6, receiverBankCode);
+							cstmt.setInt(7, transferAmount);
+							
+							cstmt.executeUpdate();
+							
+						} catch  (Exception e) {
+							e.printStackTrace();
+						}
+						
+		} else if (senderBankCode.equals("2")) {
+			// BK
+			try (
+					Connection conn = new ConnectionFactory().getConnection();
+					CallableStatement cstmt = conn.prepareCall("{call transaction_history_bk_8(?,?,?,?,?,?,?)}");
+					) {
+				
+				cstmt.setString(1, userId);
+				cstmt.setString(2, cusPhonenumber);
+				cstmt.setString(3, senderAccountNumber);
+				cstmt.setString(4, receiverAccountNumber);
+				cstmt.setString(5, senderBankCode);
+				cstmt.setString(6, receiverBankCode);
+				cstmt.setInt(7, transferAmount);
+				
+				cstmt.executeUpdate();
+				
+			} catch  (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
 	}
-
 }

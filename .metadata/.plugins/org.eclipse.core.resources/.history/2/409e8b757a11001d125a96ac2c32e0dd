@@ -1,0 +1,37 @@
+package kr.ac.kopo.board.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import kr.ac.kopo.board.vo.BoardVO;
+import kr.ac.kopo.util.ConnectionFactory;
+
+public class BoardDAO {
+	
+	public void insertBoard(BoardVO board) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			
+			conn = new ConnectionFactory().getConnection();
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append(false);
+			
+			int loc = 1;
+			
+			pstmt.setInt(loc++, board.getNo());
+			
+			
+			
+		}
+		
+		
+		
+	}
+	
+	
+
+}

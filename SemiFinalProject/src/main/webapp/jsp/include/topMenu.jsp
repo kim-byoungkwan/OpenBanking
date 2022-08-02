@@ -41,7 +41,7 @@
     </div>            
             
             <ul class="navbar-nav ms-auto my-2 my-lg-0">
-            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath }/board/list.do">Q & A</a></li>
             </ul>    
                 
 	 	</ul>
